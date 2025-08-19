@@ -1,4 +1,9 @@
 import webpack from "webpack";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// 在 ESM 环境下手动定义 __dirname，供后续 path.resolve 使用
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const mode = process.env.BUILD_MODE ?? "standalone";
 console.log("[Next] build mode", mode);
@@ -23,6 +28,15 @@ const nextConfig = {
     config.resolve.fallback = {
       child_process: false,
     };
+
+    if (process.env.BUILD_MODE === "export") {
+      // 把真实文件映射到空实现
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        // 组件都用相对写法 `../mcp/actions`
+        "../mcp/actions": path.resolve(__dirname, "app/mcp/actions.empty.ts"),
+      };
+    }
 
     return config;
   },
