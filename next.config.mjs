@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import path from "path";
 import { fileURLToPath } from "url";
+import CompressionPlugin from "compression-webpack-plugin";
 
 // 在 ESM 环境下手动定义 __dirname，供后续 path.resolve 使用
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -36,6 +37,15 @@ const nextConfig = {
         // 组件都用相对写法 `../mcp/actions`
         "../mcp/actions": path.resolve(__dirname, "app/mcp/actions.empty.ts"),
       };
+
+      // 静态文件gzip压缩
+      config.plugins.push(
+        new CompressionPlugin({
+          test: /\.(js|css|html|svg)$/,
+          threshold: 10240,
+          minRatio: 0.8,
+        }),
+      );
     }
 
     return config;
