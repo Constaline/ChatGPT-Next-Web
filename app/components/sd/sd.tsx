@@ -14,8 +14,6 @@ import {
 } from "@/app/utils";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppConfig } from "@/app/store";
-import MinIcon from "@/app/icons/min.svg";
-import MaxIcon from "@/app/icons/max.svg";
 import { getClientConfig } from "@/app/config/client";
 import { ChatAction } from "@/app/components/chat";
 import DeleteIcon from "@/app/icons/clear.svg";
@@ -134,7 +132,7 @@ export function Sd() {
             </div>
 
             <div className="window-actions">
-              {showMaxIcon && (
+              {/* {showMaxIcon && (
                 <div className="window-action-button">
                   <IconButton
                     aria={Locale.Chat.Actions.FullScreen}
@@ -147,7 +145,7 @@ export function Sd() {
                     }}
                   />
                 </div>
-              )}
+              )} */}
               {isMobileScreen && <SDIcon width={50} height={50} />}
             </div>
           </div>

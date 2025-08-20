@@ -13,7 +13,6 @@ import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
 import RenameIcon from "../icons/rename.svg";
 import EditIcon from "../icons/rename.svg";
-import ExportIcon from "../icons/share.svg";
 import ReturnIcon from "../icons/return.svg";
 import CopyIcon from "../icons/copy.svg";
 import SpeakIcon from "../icons/speak.svg";
@@ -22,8 +21,6 @@ import LoadingIcon from "../icons/three-dots.svg";
 import LoadingButtonIcon from "../icons/loading.svg";
 import PromptIcon from "../icons/prompt.svg";
 import MaskIcon from "../icons/mask.svg";
-import MaxIcon from "../icons/max.svg";
-import MinIcon from "../icons/min.svg";
 import ResetIcon from "../icons/reload.svg";
 import ReloadIcon from "../icons/reload.svg";
 import BreakIcon from "../icons/break.svg";
@@ -1735,7 +1732,7 @@ function _Chat() {
                 />
               </div>
             )}
-            <div className="window-action-button">
+            {/* <div className="window-action-button">
               <IconButton
                 icon={<ExportIcon />}
                 bordered
@@ -1744,8 +1741,8 @@ function _Chat() {
                   setShowExport(true);
                 }}
               />
-            </div>
-            {showMaxIcon && (
+            </div> */}
+            {/* {showMaxIcon && (
               <div className="window-action-button">
                 <IconButton
                   icon={config.tightBorder ? <MinIcon /> : <MaxIcon />}
@@ -1759,7 +1756,7 @@ function _Chat() {
                   }}
                 />
               </div>
-            )}
+            )} */}
           </div>
 
           <PromptToast
