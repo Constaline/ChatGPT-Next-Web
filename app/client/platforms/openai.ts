@@ -64,9 +64,10 @@ export interface RequestPayload {
   temperature: number;
   presence_penalty: number;
   frequency_penalty: number;
-  top_p: number;
+  top_p?: number;
   max_tokens?: number;
   max_completion_tokens?: number;
+  reasoning_effort?: "low" | "medium" | "high";
 }
 
 export interface DalleRequestPayload {
@@ -241,9 +242,13 @@ export class ChatGPTApi implements LLMApi {
 
       if (isGpt5) {
         // Remove max_tokens if present
-        delete requestPayload.max_tokens;
+        delete requestPayload["max_tokens"];
+        // Remove top_p if present
+        delete requestPayload["top_p"];
         // Add max_completion_tokens (or max_completion_tokens if that's what you meant)
         requestPayload["max_completion_tokens"] = modelConfig.max_tokens;
+        // Add reasoning_effort parameter，for GPT-5 only
+        requestPayload["reasoning_effort"] = "medium";
       } else if (isO1OrO3) {
         // by default the o1/o3 models will not attempt to produce output that includes markdown formatting
         // manually add "Formatting re-enabled" developer message to encourage markdown inclusion in model responses
